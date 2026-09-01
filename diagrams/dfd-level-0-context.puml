@@ -1,0 +1,38 @@
+@startuml DFD_Level_0_Context
+!define DBCOLOR #E1F5FE
+!define PROCESSCOLOR #FFF9C4
+!define ACTORCOLOR #F3E5F5
+!define FLOWCOLOR #333333
+
+title DFD Level 0 - Context Diagram\nTime Management System (TMS)
+
+package "Time Management System Boundary" {
+    rectangle "Time Management\nSystem (TMS)" as TMS #FFF9C4
+}
+
+actor "Executive\n(Multiple)" as EXE #F3E5F5
+actor "Secretary\n(Multiple)" as SEC #F3E5F5
+database "Email\nService" as EMAIL #E1F5FE
+
+EXE -down-> TMS: Register Appointments\nView Schedules\nMark Leave\nPost Daily Tasks
+SEC -down-> TMS: Arrange Meetings\nRearrange Appointments\nManage Multiple Executives
+TMS -right-> EXE: Daily Appointment Email\nMeeting Notifications\nSchedule Information
+TMS -right-> EMAIL: Send Emails to Executives\nMeeting Confirmations
+TMS -left-> SEC: Display Meeting Slots\nRearrangement Suggestions\nStatistics Reports
+
+note right of EXE
+  Remote Desktop Users
+  Novice Computer Users
+end note
+
+note right of SEC
+  Remote Desktop Users
+  Support for Executives
+end note
+
+note bottom of TMS
+  Serves Multiple Simultaneous Remote Requests
+  Processes: Schedules, Meetings, Leave, Tasks, Statistics
+end note
+
+@enduml
